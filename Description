@@ -1,0 +1,22 @@
+A simple OrderBook Simulator
+
+When a limit order for price P and volume V is entered into the market, it will immediately trade against any orders on the opposite 
+side that have a price better than P (e.g. Less than or equal to P if it's a buy order, or greater than or equal to P if it's a
+sell order), until either V lots have traded or there are no orders left that it can trade with. If the order has any volume left 
+over after it has traded against all viable orders, it will enter the market and stay there until another order trades with its 
+remaining volume.Incoming orders trade against the best prices on the opposite side first
+Example:
+    Starting orderbook:
+        Order	Side	Price	Volume
+        A		Sell	10.2		50
+        B		Sell	10.1		5
+        C		Sell	10.1		30
+        D		Buy		10.0		100
+
+    A buy order arrives for 20 lots at a price of 10.1. It trades entirely against order C and never enters the orderbook.
+    C's volume is reduced by 20 lots:
+        Order	Side	Price	Volume
+        A		Sell	10.2		50
+        B		Sell	10.1		5
+        C		Sell	10.1		10
+        D		Buy		10.0		100
